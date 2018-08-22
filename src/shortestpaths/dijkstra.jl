@@ -30,7 +30,8 @@ instead of `SparseMatrixCSC{Int64,Int64}`.
 """
 function dijkstra_shortest_paths(g::AbstractGraph,
     srcs::Vector{U},
-    distmx::AbstractMatrix{T}=weights(g);
+    distmx::AbstractMatrix{T}=weights(g),
+    sInf::Bool=true;
     allpaths=false,
     trackvertices=false
     ) where T <: Real where U <: Integer
@@ -65,7 +66,7 @@ function dijkstra_shortest_paths(g::AbstractGraph,
         d = dists[u] # Cannot be typemax if `u` is in the queue
         for v in outneighbors(g, u)
             alt = d + distmx[u, v]
-            if distmx[u, v] == 0.
+            if sInf && distmx[u, v] == 0.
                 alt = Inf
             end
 
