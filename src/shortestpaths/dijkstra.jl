@@ -116,5 +116,5 @@ function dijkstra_shortest_paths(g::AbstractGraph,
     return DijkstraState{T,U}(parents, dists, preds, pathcounts, closest_vertices)
 end
 
-dijkstra_shortest_paths(g::AbstractGraph, src::Integer, distmx::AbstractMatrix=weights(g); allpaths=false, trackvertices=false) =
+dijkstra_shortest_paths(g::AbstractGraph, src::Integer, distmx::AbstractMatrix=weights(g), sInf::Bool=true; allpaths=false, trackvertices=false) =
 dijkstra_shortest_paths(g, [src;], distmx; allpaths=allpaths, trackvertices=trackvertices)
