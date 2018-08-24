@@ -65,7 +65,6 @@ function dijkstra_shortest_paths(g::AbstractGraph,
 
         d = dists[u] # Cannot be typemax if `u` is in the queue
         for v in outneighbors(g, u)
-            println("U: ",u,"\t","V: ",v)
             alt = d + distmx[u, v]
             if sInf && distmx[u, v] == 0.
                 alt = Inf
