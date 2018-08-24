@@ -65,6 +65,7 @@ function dijkstra_shortest_paths(g::AbstractGraph,
 
         d = dists[u] # Cannot be typemax if `u` is in the queue
         for v in outneighbors(g, u)
+            println("U: ",u,"\t","V: ",v)
             alt = d + distmx[u, v]
             if sInf && distmx[u, v] == 0.
                 alt = Inf
@@ -117,4 +118,4 @@ function dijkstra_shortest_paths(g::AbstractGraph,
 end
 
 dijkstra_shortest_paths(g::AbstractGraph, src::Integer, distmx::AbstractMatrix=weights(g), sInf::Bool=true; allpaths=false, trackvertices=false) =
-dijkstra_shortest_paths(g, [src;], distmx; allpaths=allpaths, trackvertices=trackvertices)
+dijkstra_shortest_paths(g, [src;], distmx, sInf; allpaths=allpaths, trackvertices=trackvertices)
