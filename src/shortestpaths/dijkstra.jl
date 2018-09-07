@@ -73,7 +73,9 @@ function dijkstra_shortest_paths(g::AbstractGraph,
             if !visited[v]
                 visited[v] = true
                 dists[v] = alt
-                parents[v] = u
+                if alt != Inf
+                    parents[v] = u
+                end
 
                 pathcounts[v] += pathcounts[u]
                 if allpaths
